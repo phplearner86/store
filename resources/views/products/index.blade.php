@@ -8,21 +8,18 @@
 
             {{-- Filters --}}
             <div class="col-md-3">
-                Filters
+                @include('products.html.index._sidebar')
             </div>
             
             {{-- Products --}}
             <div class="col-md-9">
                 @if ($products->count())
-                    <div class="row">
-
                         {{-- Single Product --}}
-                        @foreach ($products as $product)
-                                
-                            @include('products.html._product')
-                                
+                        @foreach ($products->chunk(3) as $chunk)
+                            <div class="row">
+                                @each ('products.html.index._product', $chunk, 'product')
+                            </div>
                         @endforeach
-                    </div>
                 @else
                     No Products
                 @endif

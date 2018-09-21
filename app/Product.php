@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
     /**
      * Set product price attribute
      * 
@@ -27,5 +32,11 @@ class Product extends Model
     public function getPresentPriceAttribute()
     {
         return config('app.currency') . $this->price;
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        // $filters = App\Filters\Filters.php@protected $filters=[]
+        return $filters->apply($query); // App\Filters\Filters.php@apply()
     }
 }
