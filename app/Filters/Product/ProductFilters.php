@@ -9,15 +9,18 @@ class ProductFilters extends Filters
 {
     /**
      * Filter name
+     * 
      * @var array
      */
     protected $filters = ['category', 'price'];
 
     /**
-     * [category description]
-     * @return [type] [description]
+     * Filter products by category
+     * 
+     * @param   string $slug
+     * @return void
      */
-    public function category($slug)
+    protected function category($slug)
     {
         $category = Category::where('slug', $slug)->first();
 
@@ -29,7 +32,13 @@ class ProductFilters extends Filters
         }
     }
 
-    public function price($order)
+    /**
+     * Filter products by price order
+     * 
+     * @param  string $order 
+     * @return void
+     */
+    protected function price($order)
     {
         $orders = ['high_to_low', 'low_to_high'];
 
