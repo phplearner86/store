@@ -26,7 +26,7 @@
                 
                 {{-- Pagination --}}
                 <div class="pagination pull-right">
-                    {{ $products->links() }}
+                    {{ $products->appends(request()->query())->links() }}
                 </div>
 
             </div>

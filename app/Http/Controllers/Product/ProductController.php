@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
         // $products = Product::inRandomOrder()->paginate(6);
        
-        $products = Product::filter($filters)->paginate(6);
+        $products = Product::filter($filters)->paginate(3);
         
         $categories = Category::orderBy('name')->get();
 
