@@ -3,6 +3,8 @@
 namespace App\Services\Utilities\ShoppingCart;
 
 use App\Services\Utilities\ShoppingCart\CartItem;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 
 class Cart
 {
@@ -23,6 +25,15 @@ class Cart
 
         $item->setQuantity($qty);
 
-        return $item;
+        //Get the cart content
+        $content =  Session::has('default') ? Session::get('default') : new Collection;
+
+        //Add the item to the cart
+        $content->put($item->rowId, $item);
+
+        //Update the cart content
+        Session::put('default', $content);
+
+        // return $content;
     }
 }

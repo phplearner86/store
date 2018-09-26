@@ -1,7 +1,4 @@
 Cart related tasks:
-  ✔ create custom cart model @done (18-09-26 15:35)
-  ☐ create cart controller and routes @started(18-09-26 15:35)
-  ☐ create cart item model
   ☐ add item to the cart
   ☐ display cart items
   ☐ remove item from the cart
@@ -11,3 +8,9 @@ Cart related tasks:
   ☐ display cart subtotal
   ☐ displat cart tax
   ☐ display cart total
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ create cart item model @done (18-09-26 16:52) @project(Cart related tasks)
+ ✔ create cart controller and routes @started(18-09-26 15:35) @done (18-09-26 16:52) @lasted(1:17) @project(Cart related tasks)
+ ✔ create custom cart model @done (18-09-26 15:35) @project(Cart related tasks)
