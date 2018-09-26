@@ -1,10 +1,10 @@
 <?php
 
-use App\Category;
+use App\Color;
 use App\Product;
 use Illuminate\Database\Seeder;
 
-class CategoriesTableSeeder extends Seeder
+class ColorsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,35 +13,36 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['women', 'men', 'kids', 'accessories'];
+        $colors = ['red', 'blue', 'green'];
 
-        foreach ($categories as $category) {
-            factory(App\Category::class)->create([
-                'name' => $category
+        foreach ($colors as $color) 
+        {
+            factory(App\Color::class)->create([
+                'name' => $color
             ]);
         }
 
-       
+    
 
         $products1 = Product::inRandomOrder()->take(10)->get();
-        $category1 = Category::first();
+        $color1 = Color::first();
 
         foreach ($products1 as $product) {
-            $product->categories()->attach($category1);
+            $product->colors()->attach($color1);
         }
 
         $products2 = Product::inRandomOrder()->take(10)->get();
-        $category2 = Category::find(2);
+        $color2 = Color::find(2);
 
         foreach ($products2 as $product) {
-            $product->categories()->attach($category2);
+            $product->colors()->attach($color2);
         }
 
         $products3 = Product::inRandomOrder()->take(10)->get();
-        $category3 = Category::find(3);
+        $color3 = Color::find(3);
 
         foreach ($products3 as $product) {
-            $product->categories()->attach($category3);
+            $product->colors()->attach($color3);
         }
     }
 }

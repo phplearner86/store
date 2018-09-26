@@ -1,9 +1,1 @@
-Category model(name i slug) -a, seeder, veza sa product many to many, tabela categ_product prod i category id, u seederu produkti napraviti 3 grupe proizvoda i povezati sa kategorijama
-$products1 = Product::inRandomOrder()->take(5)->get();
-$category1 = Category::first();
-
-forach($products1 as $product)
-{
-    $product->categories()->attach($category1);
-}
-list group u butstrepu
+model Colors 3 boje, vise produkata, many to many sa produktima, filtrirano po boji 

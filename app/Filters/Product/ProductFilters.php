@@ -3,6 +3,7 @@
 namespace App\Filters\Product;
 
 use App\Category;
+use App\Color;
 use App\Filters\Filters;
 
 class ProductFilters extends Filters
@@ -12,7 +13,7 @@ class ProductFilters extends Filters
      * 
      * @var array
      */
-    protected $filters = ['category', 'price'];
+    protected $filters = ['category', 'price', 'color'];
 
     /**
      * Filter products by category
@@ -52,6 +53,18 @@ class ProductFilters extends Filters
             {
                 return $this->builder->orderBy('price', 'asc');
             }
+        }
+    }
+
+    protected function color($slug)
+    {
+        $color = Color::where('slug', $slug)->first();
+
+        if ($color->count()) 
+        {
+            $this->builder->whereHas('colors', function($query) use($slug){
+                $query->whereSlug($slug);
+            });
         }
     }
 }

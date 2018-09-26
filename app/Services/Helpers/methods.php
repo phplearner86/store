@@ -15,15 +15,27 @@ function format_price($price, $decimals=2)
     
 }
 
-function getQueryString(array $array)
+/**
+ * Get query string.
+ * 
+ * @param  array  $array 
+ * @return $array
+ */
+function getQueryString(array $query)
 {
-    $query_string = array_merge(request()->query(), $array);
+    $query_string = array_merge(request()->query(), $query);
 
     $filtered_query = array_except($query_string, ['page']);
 
     return $filtered_query;
 }
 
+/**
+ * Remove query string.
+ * 
+ * @param  string $filter 
+ * @return $array
+ */
 function removeQueryString($filter)
 {
     $query_string = request()->query();
