@@ -16,6 +16,12 @@ class Product extends Model
     {
         return $this->belongsToMany(Color::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     /**
      * Set product price attribute
      * 

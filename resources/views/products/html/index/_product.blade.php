@@ -10,7 +10,16 @@
                 <div class="btn-group">
                     <span>{{ $product->present_price }}</span>
                 </div>
-                <i class="fa fa-cart-plus"></i>
+    
+                <form action="{{ route('carts.store', $product) }}" method="POST">
+                    @csrf
+
+                    <button type="submit">
+                        <i class="fa fa-cart-plus"></i>
+                    </button>
+                </form>
+                
+
             </div>
         </div>
     </div>
