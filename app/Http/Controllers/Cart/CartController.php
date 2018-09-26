@@ -39,7 +39,9 @@ class CartController extends Controller
     {
         $qty = $request->qty ?: 1;
 
-        return Cart::createCartItem($product->id, $product->name, $product->price, $qty);
+        Cart::createCartItem($product->id, $product->name, $product->price, $qty);
+
+        return back();
     }
 
     /**
@@ -48,9 +50,13 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $cartItems = Cart::getItems();
+
+        $products = Cart::getProducts();
+
+        return view('carts.show', compact('cartItems', 'products'));
     }
 
     /**

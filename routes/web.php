@@ -22,4 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('products', 'Product\\ProductController');
 
 
+Route::get('mycart', 'Cart\CartController@show')->name('carts.show');
 Route::post('mycart/{product}', 'Cart\CartController@store')->name('carts.store');
