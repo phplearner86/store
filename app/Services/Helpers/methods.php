@@ -7,12 +7,17 @@
  * @param  integer $decimals
  * @return float          
  */
-function format_price($price, $decimals=2)
+function formatNumber($price, $decimals=2)
 {
     $formatted_price = number_format($price, $decimals);
 
     return $formatted_price;
     
+}
+
+function presentPrice($price)
+{
+    return config('app.currency') . $price;
 }
 
 /**

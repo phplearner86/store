@@ -32,7 +32,7 @@ class Product extends Model
     {
         $price = $value/100;
 
-        return format_price($price);
+        return formatNumber($price);
     }
 
     /**
@@ -42,7 +42,7 @@ class Product extends Model
      */
     public function getPresentPriceAttribute()
     {
-        return config('app.currency') . $this->price;
+        return presentPrice($this->price);
     }
 
     public function scopeFilter($query, $filters)

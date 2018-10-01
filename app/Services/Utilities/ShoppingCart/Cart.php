@@ -2,57 +2,38 @@
 
 namespace App\Services\Utilities\ShoppingCart;
 
-use App\Product;
-use App\Services\Utilities\ShoppingCart\CartItem;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Session;
+use App\Traits\Cart\HasContent;
 
-class Cart
+
+class Cart 
 {
-    /**
-     * Create cart item.
-     * 
-     * @param  integer $id     
-     * @param  string $name   
-     * @param  integer $price   
-     * @param  integer $qty     
-     * @param  array  $options 
-     * @return App\Services\Utilities\ShoppingCart\CartItem         
-     */
-    public function createCartItem($id, $name, $price, $qty, $options=[])
+    use HasContent;
+
+    public function addItem($product, $qty=1, $cart='default')
     {
-        //Create cart item from product
-        $item = CartItem::fromAttributes($id, $name, $price, $options);
-
-        $item->setQuantity($qty);
-
-        //Get the cart content
-        $content =  Session::has('default') ? Session::get('default') : new Collection;
-
-        //Add the item to the cart
-        $content->put($item->rowId, $item);
-
-        //Update the cart content
-        Session::put('default', $content);
-
-        // return $content;
+        $this->createCartContent($product, $qty, $cart);
     }
 
-    public function getItems()
+    public function getItems($cart='default')
     {
-         $content =  Session::has('default') ? Session::get('default') : new Collection;
+        $items = $this->getCartContent($cart);
 
-         return $content;
+        return $items;
     }
 
-    public function getProducts()
+    public function removeItem($rowId, $cart='default')
     {
-        $content =  Session::has('default') ? Session::get('default') : new Collection;
-
-        $ids = $content->pluck('id')->toArray();
-
-        $products = Product::findMany($ids);
-
-        return $products;
+       $this->removeFromCartContent($rowId, $cart);
     }
+
+    public function updateItem($rowId, $qty, $cart='default')
+    {
+        $this->updateItemQuantity($rowId, $qty, $cart);
+    }
+
+    public function empty($cart='default')
+    {
+        $this->emptyCart($cart);
+    }
+
 }

@@ -1,6 +1,6 @@
 Cart related tasks:
   ✔ add item to the cart @done (18-09-26 17:31)
-  ☐ display cart items
+  ✔ display cart items @done (18-09-26 17:57)
   ☐ remove item from the cart
   ☐ empty cart
   ☐ update item quantity
@@ -8,6 +8,7 @@ Cart related tasks:
   ☐ display cart subtotal
   ☐ displat cart tax
   ☐ display cart total
+  ☐ refactor the code-traits, helpers
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:

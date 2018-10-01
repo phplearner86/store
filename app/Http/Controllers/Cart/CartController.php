@@ -39,9 +39,10 @@ class CartController extends Controller
     {
         $qty = $request->qty ?: 1;
 
-        Cart::createCartItem($product->id, $product->name, $product->price, $qty);
+        Cart::addItem($product, $qty);
 
         return back();
+       
     }
 
     /**
@@ -54,9 +55,7 @@ class CartController extends Controller
     {
         $cartItems = Cart::getItems();
 
-        $products = Cart::getProducts();
-
-        return view('carts.show', compact('cartItems', 'products'));
+        return view('carts.show', compact('cartItems'));
     }
 
     /**
@@ -77,9 +76,11 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $rowId)
     {
-        //
+        Cart::updateItem($rowId, $request->qty);
+
+        return back();
     }
 
     /**
@@ -88,8 +89,17 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        Cart::empty();
+
+        return back();
+    }
+
+    public function remove($rowId)
+    {
+        Cart::removeItem($rowId);
+
+        return back();
     }
 }
