@@ -56,8 +56,24 @@
                     <td class="text-center"><a href="{{ route('carts.remove', $rowId) }}"><i class="fa fa-trash"></i></a></td>
                 </tr>
                 @endforeach
+                <tr>
+                    <td class="border-0"></td>
+                    <td colspan="3" class="text-right">
+                        <p class="mb-2">Subtotal: </p>
+                        <p class="mb-2">Shipping & Handling: </p>
+                        <p class="mb-2">Tax ({{ config('cart.tax') }}%): </p>
+                        <p class="font-semibold uppercase mb-0">Grand Total: </p>
+                    </td>
+                    <td class="text-right">
+                        <p class="mb-2">{{ Cart::subtotal() }}</p>
+                        <p class="mb-2">$ 0.00</p>
+                        <p class="mb-2">{{ Cart::tax() }}</p>
+                        <p class="mb-2">{{ Cart::total() }}</p>
+                    </td>
+                </tr>
             </tbody>
         </table>
+                <a class="btn btn-primary pull-right" href="{{ route('orders.create') }}">Check out</a>
         @else
             <h2>Your cart is empty!</h2>
             <a href="{{ route('products.index') }}" class="btn btn-primary">Continue shopping</a>

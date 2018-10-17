@@ -49,3 +49,12 @@ function removeQueryString($filter)
 
     return $filtered_query;
 }
+
+function formatFloat($float)
+{
+    $decimalsCount = strlen(substr(strrchr($float, '.'), 1));
+
+    $formattedFloat = $float * (10 ** $decimalsCount);
+
+    return $formattedFloat;
+}

@@ -27,3 +27,5 @@ Route::get('mycart/empty', 'Cart\CartController@destroy')->name('carts.destroy')
 Route::post('mycart/{product}', 'Cart\CartController@store')->name('carts.store');
 Route::get('mycart/{rowId}', 'Cart\CartController@remove')->name('carts.remove');
 Route::patch('mycart/{rowId}', 'Cart\CartController@update')->name('carts.update');
+
+Route::resource('orders', 'OrderController');
